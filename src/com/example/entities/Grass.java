@@ -1,4 +1,4 @@
 package com.example.entities;
 
-public class Grass {
+public class Grass extends Entity {
 }

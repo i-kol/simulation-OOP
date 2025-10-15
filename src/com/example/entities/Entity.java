@@ -1,4 +1,4 @@
 package com.example.entities;
 
-public class Entity {
+public abstract class Entity {
 }

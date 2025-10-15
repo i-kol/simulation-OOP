@@ -1,4 +1,4 @@
 package com.example.entities;
 
-public class Herbivore {
+public class Herbivore extends Creature {
 }

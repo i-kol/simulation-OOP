@@ -1,4 +1,4 @@
 package com.example.map;
 
-public class Coordinates {
+public record Coordinates (int row, int column) {
 }

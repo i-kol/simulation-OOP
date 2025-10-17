@@ -3,8 +3,6 @@ package com.example.entities;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
 
-import java.util.List;
-
 public class Creature extends Entity {
     private final int speed;
     private final int health;
@@ -20,11 +18,7 @@ public class Creature extends Entity {
         }
     }
 
-    public List<Coordinates> getAvailableCellsForMove(WorldMap worldMap, Coordinates coordinates, Direction direction) {
-        for (Coordinates coordinates1 : )
-    }
-
-    private List<Coordinates>
+    //TODO перенести сюда методы из старого проекта
 
     public enum Direction {
         UP(-1,0),

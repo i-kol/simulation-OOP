@@ -2,7 +2,9 @@ package com.example.map;
 
 import com.example.entities.Entity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WorldMap {
@@ -47,5 +49,34 @@ public class WorldMap {
         if (isWithinMap(coordinates)) {
             throw new IllegalArgumentException("Coordinates is out of world map borders: " + coordinates);
         }
+    }
+
+    protected List<Coordinates> getNeighborCells(Coordinates coordinates) {
+        ArrayList<Coordinates> listOfNeighboringCells = new ArrayList<>();
+
+        for (int row = -1; row <= 1; row++) {
+            for (int column = -1; column <= 1; column++) {
+                Coordinates cell = new Coordinates(coordinates.row() + row, coordinates.column() + column);
+                validate(cell);
+                    if (row == 0 && column == 0) {
+                        continue;
+                    }
+                    listOfNeighboringCells.add(cell);
+                }
+            }
+        return listOfNeighboringCells;
+    }
+
+    protected List<Coordinates> getAdjacentCells(Coordinates coordinates) {
+        ArrayList<Coordinates> listOfAdjacentCells = new ArrayList<>();
+        List<Coordinates> listOfNeighboringCells = getNeighborCells(coordinates);
+
+        for (Coordinates cell : listOfNeighboringCells) {
+            validate(cell);
+            if (isEmpty(cell)) {
+                listOfAdjacentCells.add(cell);
+            }
+        }
+        return listOfAdjacentCells;
     }
 }

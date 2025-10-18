@@ -33,7 +33,7 @@ public class WorldMap {
         entities.remove(coordinates);
     }
 
-    public boolean isEmpty(Coordinates coordinates) {
+    private boolean isEmpty(Coordinates coordinates) {
         validate(coordinates);
         return !entities.containsKey(coordinates);
     }
@@ -51,7 +51,7 @@ public class WorldMap {
         }
     }
 
-    protected List<Coordinates> getNeighborCells(Coordinates coordinates) {
+    public List<Coordinates> getNeighborCells(Coordinates coordinates) {
         ArrayList<Coordinates> listOfNeighboringCells = new ArrayList<>();
 
         for (int row = -1; row <= 1; row++) {

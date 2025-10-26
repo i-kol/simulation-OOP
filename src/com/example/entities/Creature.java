@@ -8,8 +8,10 @@ import java.util.List;
 
 public abstract class Creature extends Entity {
     private final int speed;
-    private final int health;
+    private int currentHealth;
+    private final int maxHealth;
     private int actionPoint;
+    private final int maximumHealthRecovery;
     Class<? extends Entity> target;
     private final Pathfinder pathfinder;
     private CallBack onAttack;
@@ -17,10 +19,12 @@ public abstract class Creature extends Entity {
     private CallBack onMoveImpossible;
 
 
-    public Creature(int speed, int health, int actionPoint, Class<? extends Entity> target) {
+    public Creature(int speed, int currentHealth, int maxHealth, int actionPoint, int maximumHealthRecovery, Class<? extends Entity> target) {
         this.speed = speed;
-        this.health = health;
+        this.currentHealth = currentHealth;
+        this.maxHealth = maxHealth;
         this.actionPoint = actionPoint;
+        this.maximumHealthRecovery = maximumHealthRecovery;
         this.target = target;
         this.pathfinder = new Pathfinder();
     }
@@ -49,7 +53,13 @@ public abstract class Creature extends Entity {
 
     protected abstract void attackTarget(WorldMap worldMap, Coordinates coordinates);
 
-
+    protected void restoreHealth() {
+        if (currentHealth > (maxHealth - maximumHealthRecovery)) {
+            currentHealth = maxHealth;
+        } else {
+            currentHealth += maximumHealthRecovery;
+        }
+    }
 
     private void makeStep(WorldMap worldMap, Coordinates coordinates) {
         List<Coordinates> path = pathfinder.findPath(worldMap, coordinates, target);

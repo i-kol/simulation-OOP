@@ -15,11 +15,9 @@ public class Herbivore extends Creature {
         super(SPEED, CURRENT_HEALTH, MAX_HEALTH, ACTION_POINT, MAX_HEALTH_RECOVERY, TARGET);
     }
 
-    //TODO сделать механизм наступания на траву (и проверить ТЗ, нужно ли наступать на съеденное травоядное хищнику)
-
     @Override
     protected void attackTarget(WorldMap worldMap, Coordinates coordinates) {
         restoreHealth();
-
+        worldMap.remove(coordinates);
     }
 }

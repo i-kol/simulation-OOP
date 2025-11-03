@@ -63,7 +63,7 @@ public abstract class Creature extends Entity {
 
     private void makeStep(WorldMap worldMap, Coordinates coordinates) {
         List<Coordinates> path = pathfinder.findPath(worldMap, coordinates, target);
-        Coordinates nextStep = coordinates;
+        Coordinates nextStep;
 
         if (!path.isEmpty() && actionPoint > 0) {
             worldMap.remove(coordinates);

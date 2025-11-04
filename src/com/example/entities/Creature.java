@@ -29,7 +29,7 @@ public abstract class Creature extends Entity {
         this.pathfinder = new Pathfinder();
     }
 
-    private void makeMove(WorldMap worldMap, Coordinates coordinates) {
+    public void makeMove(WorldMap worldMap, Coordinates coordinates) {
         actionPoint++;
 
         if (isTarget(worldMap, coordinates)) {

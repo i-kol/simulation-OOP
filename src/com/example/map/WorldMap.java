@@ -33,7 +33,7 @@ public class WorldMap {
         entities.remove(coordinates);
     }
 
-    private boolean isEmpty(Coordinates coordinates) {
+    public boolean isEmpty(Coordinates coordinates) {
         validate(coordinates);
         return !entities.containsKey(coordinates);
     }
@@ -46,7 +46,7 @@ public class WorldMap {
         if (coordinates == null) {
             throw new IllegalArgumentException("Coordinates is null!");
         }
-        if (isWithinMap(coordinates)) {
+        if (!isWithinMap(coordinates)) {
             throw new IllegalArgumentException("Coordinates is out of world map borders: " + coordinates);
         }
     }
@@ -78,5 +78,13 @@ public class WorldMap {
             }
         }
         return listOfAdjacentCells;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }

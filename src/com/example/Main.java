@@ -11,7 +11,7 @@ import com.example.renderer.Renderer;
 public class Main {
     public static void main(String[] args) {
         WorldMap worldMap = new WorldMap(5, 5);
-        worldMap.put(new Grass(), new Coordinates(2, 2));
+        worldMap.put(new Grass(), new Coordinates(0, 0));
         worldMap.put(new Herbivore(), new Coordinates(3, 3));
         Renderer renderer = new ConsoleRenderer();
         renderer.show(worldMap);
@@ -19,6 +19,6 @@ public class Main {
         Herbivore rabbit = (Herbivore) worldMap.get(new Coordinates(3, 3));
         rabbit.makeMove(worldMap, new Coordinates(3, 3));
         renderer.show(worldMap);
-        //TODO: разобраться, почему заяц не ест траву
+
     }
 }

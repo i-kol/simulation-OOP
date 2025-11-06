@@ -31,31 +31,24 @@ public abstract class Creature extends Entity {
     }
 
     public void makeMove(WorldMap worldMap, Coordinates coordinates) {
-
-        //определить, есть ли цель в соседней клетке
-        //если есть цель и очки действий, то атаковать в цикле, пока очки действий не кончатся или цель не пропадет
-        //если цели нет, то обнаружить ее и сделать шаг в ее сторону
-        //далее всё повторяется
-
         actionPoint++;
-
         Optional<Coordinates> currentTarget = fillTarget(worldMap, coordinates);
 
         if (currentTarget.isPresent()) {
             Coordinates targetCell = currentTarget.get();
             attackTarget(worldMap, targetCell);
+            actionPoint--;
         } else {
             makeStep(worldMap, coordinates);
+            actionPoint--;
         }
-
-
-//        while (actionPoint > 0) {
-//            attackTarget(worldMap, coordinates);
-//        }
-//        if (actionPoint > 0) {  //TODO: почему не сделать повторную атаку, если есть actionPoint на нее?
-//            makeStep(worldMap, coordinates);
-//        }
     }
+
+    //TODO: стоит ли сделать повторную атаку, если есть actionPoint на нее?
+    //определить, есть ли цель в соседней клетке
+    //если есть цель и очки действий, то атаковать в цикле, пока очки действий не кончатся или цель не пропадет
+    //если цели нет, то обнаружить ее и сделать шаг в ее сторону
+    //далее всё повторяется
 
     private Optional<Coordinates> fillTarget(WorldMap worldMap, Coordinates coordinates) {
         List<Coordinates> neighborCells = worldMap.getNeighborCells(coordinates);
@@ -67,17 +60,6 @@ public abstract class Creature extends Entity {
         }
         return Optional.empty();
     }
-
-//    private Coordinates fillTarget(WorldMap worldMap, Coordinates coordinates) {
-//        List<Coordinates> neighborCells = worldMap.getNeighborCells(coordinates);
-//        for (Coordinates cell : neighborCells) {
-//            Entity entity = worldMap.get(cell);
-//            if (target.isInstance(entity)) {
-//                return cell;
-//            }
-//        }
-//        return null;
-//    }
 
     protected abstract void attackTarget(WorldMap worldMap, Coordinates coordinates);
 

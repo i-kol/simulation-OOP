@@ -52,18 +52,20 @@ public class WorldMap {
     }
 
     public List<Coordinates> getNeighborCells(Coordinates coordinates) {
-        ArrayList<Coordinates> listOfNeighboringCells = new ArrayList<>();
+        List<Coordinates> listOfNeighboringCells = new ArrayList<>();
 
         for (int row = -1; row <= 1; row++) {
             for (int column = -1; column <= 1; column++) {
                 Coordinates cell = new Coordinates(coordinates.row() + row, coordinates.column() + column);
-                validate(cell);
+
+                if (isWithinMap(cell)) {
                     if (row == 0 && column == 0) {
                         continue;
                     }
                     listOfNeighboringCells.add(cell);
                 }
             }
+        }
         return listOfNeighboringCells;
     }
 
@@ -72,7 +74,6 @@ public class WorldMap {
         List<Coordinates> listOfNeighboringCells = getNeighborCells(coordinates);
 
         for (Coordinates cell : listOfNeighboringCells) {
-            validate(cell);
             if (isEmpty(cell)) {
                 listOfAdjacentCells.add(cell);
             }

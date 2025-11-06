@@ -37,7 +37,7 @@ public class Pathfinder {
                 if (!visited.contains(neighborForPathSearch)) {
                     visited.add(neighborForPathSearch);
                     queue.add(neighborForPathSearch);
-                    parentMap.put(neighborForPathSearch, currentCell); // Запоминаем родителя
+                    parentMap.put(neighborForPathSearch, currentCell);
                 }
             }
         }

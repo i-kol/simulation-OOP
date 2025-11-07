@@ -32,16 +32,17 @@ public abstract class Creature extends Entity {
 
     public void makeMove(WorldMap worldMap, Coordinates coordinates) {
         actionPoint++;
+
         Optional<Coordinates> currentTarget = fillTarget(worldMap, coordinates);
 
         if (currentTarget.isPresent()) {
             Coordinates targetCell = currentTarget.get();
             attackTarget(worldMap, targetCell);
-            actionPoint--;
         } else {
             makeStep(worldMap, coordinates);
-            actionPoint--;
         }
+
+        actionPoint--;
     }
 
     //TODO: стоит ли сделать повторную атаку, если есть actionPoint на нее?
@@ -97,6 +98,10 @@ public abstract class Creature extends Entity {
             }
 //            System.out.println(getClass().getSimpleName() + " cannot move because it cannot see the way");
         }
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
     }
 
     public interface CallBack {

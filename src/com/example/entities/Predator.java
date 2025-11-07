@@ -19,7 +19,18 @@ public class Predator extends Creature {
     @Override
     protected void attackTarget(WorldMap worldMap, Coordinates coordinates) {
         restoreHealth();
-        //TODO: реализовать механизм проверки на то, исчерпано ли здоровье цели или нет
-        //worldMap.remove(coordinates);
+
+        Creature target = (Creature) worldMap.get(coordinates);
+        int targetHealth = target.getCurrentHealth() - ATTACK_STRENGTH;
+
+        if (targetHealth > 0) {
+//            System.out.printf("%s attacked the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
+//            System.out.printf("Herbivore health is %d points %n", targetHealth);
+        } else {
+//            System.out.printf("%s ate the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
+            worldMap.remove(coordinates);
+        }
+
+        //TODO: реализовать паттерн CallBack для оповещении представления моделью о реализованных действиях
     }
 }

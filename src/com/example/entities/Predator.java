@@ -22,12 +22,13 @@ public class Predator extends Creature {
 
         Creature target = (Creature) worldMap.get(coordinates);
         int targetHealth = target.getCurrentHealth() - ATTACK_STRENGTH;
+        target.setCurrentHealth(targetHealth);
 
         if (targetHealth > 0) {
-//            System.out.printf("%s attacked the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
-//            System.out.printf("Herbivore health is %d points %n", targetHealth);
+            System.out.printf("%s attacked the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
+            System.out.printf("Herbivore health is %d points %n", targetHealth);
         } else {
-//            System.out.printf("%s ate the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
+            System.out.printf("%s ate the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
             worldMap.remove(coordinates);
         }
 

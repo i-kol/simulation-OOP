@@ -104,6 +104,10 @@ public abstract class Creature extends Entity {
         return currentHealth;
     }
 
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
     public interface CallBack {
         void execute(Coordinates coordinates);
     }

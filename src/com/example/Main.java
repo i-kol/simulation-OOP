@@ -23,6 +23,10 @@ public class Main {
         Predator wolf = (Predator) worldMap.get(new Coordinates(4, 4));
         wolf.makeMove(worldMap, new Coordinates(4, 4));
         renderer.show(worldMap);
+        wolf.makeMove(worldMap, new Coordinates(4, 4));
+        renderer.show(worldMap);wolf.makeMove(worldMap, new Coordinates(4, 4));
+        renderer.show(worldMap);wolf.makeMove(worldMap, new Coordinates(4, 4));
+        renderer.show(worldMap);
 
     }
 }

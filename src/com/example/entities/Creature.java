@@ -15,9 +15,10 @@ public abstract class Creature extends Entity {
     private final int maximumHealthRecovery;
     Class<? extends Entity> target;
     private final Pathfinder pathfinder;
-    private CallBack onAttack;
-    private CallBack onMove;
-    private CallBack onMoveImpossible;
+    CallBack onAttack;
+    CallBack onEat;
+    CallBack onMove;
+    CallBack onMoveImpossible;
 
 
     public Creature(int speed, int currentHealth, int maxHealth, int actionPoint, int maximumHealthRecovery, Class<? extends Entity> target) {
@@ -116,6 +117,10 @@ public abstract class Creature extends Entity {
         this.onAttack = onAttack;
     }
 
+    public void setOnEat(CallBack onEat) {
+        this.onEat = onEat;
+    }
+
     public void setOnMove(CallBack onMove) {
         this.onMove = onMove;
     }
@@ -125,5 +130,5 @@ public abstract class Creature extends Entity {
     }
 
     //TODO прикрутить эти сеттеры для вывода информации о ходах в слое View
-    //TODO creature.setOnMove(coordinates -> isMove = true("Move to" + coordinates)) - есть в проекте Snake и на видео
+    //TODO creature.setOnMove(coordinates -> isMove = true("Move to" + coordinates)) - есть в проекте Snake и на видео (part6 33:50)
 }

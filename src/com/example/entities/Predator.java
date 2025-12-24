@@ -25,9 +25,15 @@ public class Predator extends Creature {
         target.setCurrentHealth(targetHealth);
 
         if (targetHealth > 0) {
+            if (onAttack != null) {
+                onAttack.execute(coordinates);
+            }
             System.out.printf("%s attacked the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
             System.out.printf("Herbivore health is %d points %n", targetHealth);
         } else {
+            if (onEat != null) {
+                onEat.execute(coordinates);
+            }
             System.out.printf("%s ate the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
             worldMap.remove(coordinates);
         }

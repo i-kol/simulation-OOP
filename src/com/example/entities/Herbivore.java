@@ -19,5 +19,8 @@ public class Herbivore extends Creature {
     protected void attackTarget(WorldMap worldMap, Coordinates coordinates) {
         restoreHealth();
         worldMap.remove(coordinates);
+        if (onEat != null) {
+            onEat.execute(coordinates);
+        }
     }
 }

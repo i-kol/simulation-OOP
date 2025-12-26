@@ -1,4 +1,4 @@
-package com.example.renderer;
+package com.example.view;
 
 public class ConsoleIcons {
     public static final String GROUND_ICON = ".. ";

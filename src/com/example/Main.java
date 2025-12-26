@@ -1,13 +1,11 @@
 package com.example;
 
-import com.example.entities.Entity;
-import com.example.entities.Grass;
 import com.example.entities.Herbivore;
 import com.example.entities.Predator;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
-import com.example.renderer.ConsoleRenderer;
-import com.example.renderer.Renderer;
+import com.example.view.ConsoleRenderer;
+import com.example.view.Renderer;
 
 public class Main {
     public static void main(String[] args) {

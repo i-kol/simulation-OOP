@@ -1,6 +1,5 @@
-package com.example.renderer;
+package com.example.view;
 
-import com.example.entities.Entity;
 import com.example.map.WorldMap;
 
 public interface Renderer {

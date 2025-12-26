@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import com.example.callback.CallBack;
 import com.example.map.Coordinates;
 import com.example.map.Pathfinder;
 import com.example.map.WorldMap;
@@ -19,7 +20,6 @@ public abstract class Creature extends Entity {
     CallBack onEat;
     CallBack onMove;
     CallBack onMoveImpossible;
-
 
     public Creature(int speed, int currentHealth, int maxHealth, int actionPoint, int maximumHealthRecovery, Class<? extends Entity> target) {
         this.speed = speed;
@@ -109,10 +109,6 @@ public abstract class Creature extends Entity {
         this.currentHealth = currentHealth;
     }
 
-    public interface CallBack {
-        void execute(Coordinates coordinates);
-    }
-
     public void setOnAttack(CallBack onAttack) {
         this.onAttack = onAttack;
     }
@@ -129,6 +125,6 @@ public abstract class Creature extends Entity {
         this.onMoveImpossible = onMoveImpossible;
     }
 
-    //TODO прикрутить эти сеттеры для вывода информации о ходах в слое View
-    //TODO creature.setOnMove(coordinates -> isMove = true("Move to" + coordinates)) - есть в проекте Snake и на видео (part6 33:50)
+//TODO прикрутить эти сеттеры для вывода информации о ходах в клиентском коде (класс Simulation???), где будет вызываться String с описание совершенного действия
+//TODO creature.setOnMove(coordinates -> isMove = true("Move to" + coordinates)) - есть в проекте Snake и на видео (part6 33:50)
 }

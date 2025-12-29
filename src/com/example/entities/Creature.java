@@ -20,6 +20,7 @@ public abstract class Creature extends Entity {
     CallBack onEat;
     CallBack onMove;
     CallBack onMoveImpossible;
+    CallBack onUpdateHealth;
 
     public Creature(int speed, int currentHealth, int maxHealth, int actionPoint, int maximumHealthRecovery, Class<? extends Entity> target) {
         this.speed = speed;
@@ -33,7 +34,6 @@ public abstract class Creature extends Entity {
 
     public void makeMove(WorldMap worldMap, Coordinates coordinates) {
         actionPoint++;
-
         Optional<Coordinates> currentTarget = fillTarget(worldMap, coordinates);
 
         if (currentTarget.isPresent()) {
@@ -42,15 +42,8 @@ public abstract class Creature extends Entity {
         } else {
             makeStep(worldMap, coordinates);
         }
-
         actionPoint--;
     }
-
-    //TODO: стоит ли сделать повторную атаку, если есть actionPoint на нее?
-    //определить, есть ли цель в соседней клетке
-    //если есть цель и очки действий, то атаковать в цикле, пока очки действий не кончатся или цель не пропадет
-    //если цели нет, то обнаружить ее и сделать шаг в ее сторону
-    //далее всё повторяется
 
     private Optional<Coordinates> fillTarget(WorldMap worldMap, Coordinates coordinates) {
         List<Coordinates> neighborCells = worldMap.getNeighborCells(coordinates);
@@ -87,17 +80,15 @@ public abstract class Creature extends Entity {
                 nextStep = path.get(path.size() - 2);
                 worldMap.put(this, nextStep);
             }
-
             actionPoint--;
+
             if (onMove != null) {
                 onMove.execute(nextStep);
             }
-//            System.out.println(getClass().getSimpleName() + " moved to the coordinate: [" + coordinates.row() + "," + coordinates.column() + "]");
         } else {
             if (onMoveImpossible != null) {
                 onMoveImpossible.execute(coordinates);
             }
-//            System.out.println(getClass().getSimpleName() + " cannot move because it cannot see the way");
         }
     }
 
@@ -125,6 +116,7 @@ public abstract class Creature extends Entity {
         this.onMoveImpossible = onMoveImpossible;
     }
 
-//TODO прикрутить эти сеттеры для вывода информации о ходах в клиентском коде (класс Simulation???), где будет вызываться String с описание совершенного действия
-//TODO creature.setOnMove(coordinates -> isMove = true("Move to" + coordinates)) - есть в проекте Snake и на видео (part6 33:50)
+    public void setOnUpdateHealth(CallBack onUpdateHealth) {
+        this.onUpdateHealth = onUpdateHealth;
+    }
 }

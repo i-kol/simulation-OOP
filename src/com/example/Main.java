@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.callback.ModelCallbackManager;
 import com.example.entities.Herbivore;
 import com.example.entities.Predator;
 import com.example.map.Coordinates;
@@ -16,14 +17,18 @@ public class Main {
         Renderer renderer = new ConsoleRenderer();
         renderer.show(worldMap);
 
+//        ModelCallbackManager modelCallbackManager = new ModelCallbackManager();
+
 //        Herbivore rabbit = (Herbivore) worldMap.get(new Coordinates(3, 3));
 //        rabbit.makeMove(worldMap, new Coordinates(3, 3));
         Predator wolf = (Predator) worldMap.get(new Coordinates(4, 4));
         wolf.makeMove(worldMap, new Coordinates(4, 4));
         renderer.show(worldMap);
         wolf.makeMove(worldMap, new Coordinates(4, 4));
+//        modelCallbackManager.setupCallBack(wolf, new Coordinates(4, 4));
         renderer.show(worldMap);wolf.makeMove(worldMap, new Coordinates(4, 4));
         renderer.show(worldMap);wolf.makeMove(worldMap, new Coordinates(4, 4));
+
         renderer.show(worldMap);
 
     }

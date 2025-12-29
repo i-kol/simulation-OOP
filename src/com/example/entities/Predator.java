@@ -28,16 +28,14 @@ public class Predator extends Creature {
             if (onAttack != null) {
                 onAttack.execute(coordinates);
             }
-            System.out.printf("%s attacked the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
-            System.out.printf("Herbivore health is %d points %n", targetHealth);
+            if (onUpdateHealth != null) {
+                onUpdateHealth.execute(coordinates);
+            }
         } else {
             if (onEat != null) {
                 onEat.execute(coordinates);
             }
-            System.out.printf("%s ate the Herbivore at: [%d, %d]%n", getClass().getSimpleName(), coordinates.row(), coordinates.column());
             worldMap.remove(coordinates);
         }
-
-        //TODO: реализовать паттерн CallBack для оповещении представления моделью о реализованных действиях
     }
 }

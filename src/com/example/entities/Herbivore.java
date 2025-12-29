@@ -18,6 +18,8 @@ public class Herbivore extends Creature {
     @Override
     protected void attackTarget(WorldMap worldMap, Coordinates coordinates) {
         restoreHealth();
+        Grass target = (Grass) worldMap.get(coordinates);
+
         worldMap.remove(coordinates);
         if (onEat != null) {
             onEat.execute(coordinates);

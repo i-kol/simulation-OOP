@@ -1,6 +1,7 @@
 package com.example.entities;
 
 import com.example.callback.CallBack;
+import com.example.callback.HealthCallBack;
 import com.example.map.Coordinates;
 import com.example.map.Pathfinder;
 import com.example.map.WorldMap;
@@ -20,7 +21,7 @@ public abstract class Creature extends Entity {
     CallBack onEat;
     CallBack onMove;
     CallBack onMoveImpossible;
-    CallBack onUpdateHealth;
+    HealthCallBack onUpdateHealth;
 
     public Creature(int speed, int currentHealth, int maxHealth, int actionPoint, int maximumHealthRecovery, Class<? extends Entity> target) {
         this.speed = speed;
@@ -92,6 +93,12 @@ public abstract class Creature extends Entity {
         }
     }
 
+    public void triggerHealthUpdate(int health, Coordinates coordinates) {
+        if (onUpdateHealth != null) {
+            onUpdateHealth.executeHealth(health, coordinates);
+        }
+    }
+
     public int getCurrentHealth() {
         return currentHealth;
     }
@@ -116,7 +123,7 @@ public abstract class Creature extends Entity {
         this.onMoveImpossible = onMoveImpossible;
     }
 
-    public void setOnUpdateHealth(CallBack onUpdateHealth) {
+    public void setOnUpdateHealth(HealthCallBack onUpdateHealth) {
         this.onUpdateHealth = onUpdateHealth;
     }
 }

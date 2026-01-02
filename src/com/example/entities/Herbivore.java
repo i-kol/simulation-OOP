@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import com.example.callback.ActionType;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
 
@@ -22,7 +23,7 @@ public class Herbivore extends Creature {
 
         worldMap.remove(coordinates);
         if (onEat != null) {
-            onEat.execute(coordinates);
+            onEat.execute(ActionType.EAT, coordinates);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.entities;
 
-import com.example.callback.CallBack;
+import com.example.callback.ActionType;
+import com.example.callback.ActionCallBack;
 import com.example.callback.HealthCallBack;
 import com.example.map.Coordinates;
 import com.example.map.Pathfinder;
@@ -17,10 +18,10 @@ public abstract class Creature extends Entity {
     private final int maximumHealthRecovery;
     Class<? extends Entity> target;
     private final Pathfinder pathfinder;
-    CallBack onAttack;
-    CallBack onEat;
-    CallBack onMove;
-    CallBack onMoveImpossible;
+    ActionCallBack onAttack;
+    ActionCallBack onEat;
+    ActionCallBack onMove;
+    ActionCallBack onMoveImpossible;
     HealthCallBack onUpdateHealth;
 
     public Creature(int speed, int currentHealth, int maxHealth, int actionPoint, int maximumHealthRecovery, Class<? extends Entity> target) {
@@ -71,7 +72,7 @@ public abstract class Creature extends Entity {
         List<Coordinates> path = pathfinder.findPath(worldMap, coordinates, target);
         Coordinates nextStep;
 
-        if (!path.isEmpty() && actionPoint > 0) {
+        if (!path.isEmpty()) {
             worldMap.remove(coordinates);
 
             if (path.size() - 1 > speed) {
@@ -81,21 +82,20 @@ public abstract class Creature extends Entity {
                 nextStep = path.get(path.size() - 2);
                 worldMap.put(this, nextStep);
             }
-            actionPoint--;
 
             if (onMove != null) {
-                onMove.execute(nextStep);
+                onMove.execute(ActionType.MOVE, nextStep);
             }
         } else {
             if (onMoveImpossible != null) {
-                onMoveImpossible.execute(coordinates);
+                onMoveImpossible.execute(ActionType.MOVE_IMPOSSIBLE, coordinates);
             }
         }
     }
 
     public void triggerHealthUpdate(int health, Coordinates coordinates) {
         if (onUpdateHealth != null) {
-            onUpdateHealth.executeHealth(health, coordinates);
+            onUpdateHealth.executeHealth(ActionType.HEALTH_UPDATE, health, coordinates);
         }
     }
 
@@ -107,19 +107,19 @@ public abstract class Creature extends Entity {
         this.currentHealth = currentHealth;
     }
 
-    public void setOnAttack(CallBack onAttack) {
+    public void setOnAttack(ActionCallBack onAttack) {
         this.onAttack = onAttack;
     }
 
-    public void setOnEat(CallBack onEat) {
+    public void setOnEat(ActionCallBack onEat) {
         this.onEat = onEat;
     }
 
-    public void setOnMove(CallBack onMove) {
+    public void setOnMove(ActionCallBack onMove) {
         this.onMove = onMove;
     }
 
-    public void setOnMoveImpossible(CallBack onMoveImpossible) {
+    public void setOnMoveImpossible(ActionCallBack onMoveImpossible) {
         this.onMoveImpossible = onMoveImpossible;
     }
 

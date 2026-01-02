@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import com.example.callback.ActionType;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
 
@@ -26,12 +27,12 @@ public class Predator extends Creature {
 
         if (targetHealth > 0) {
             if (onAttack != null) {
-                onAttack.execute(coordinates);
+                onAttack.execute(ActionType.ATTACK, coordinates);
             }
             target.triggerHealthUpdate(targetHealth, coordinates);
         } else {
             if (onEat != null) {
-                onEat.execute(coordinates);
+                onEat.execute(ActionType.EAT, coordinates);
             }
             worldMap.remove(coordinates);
         }

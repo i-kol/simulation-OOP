@@ -14,44 +14,22 @@ public class ModelCallbackManager {
     public void setupActionCallBack(Creature creature) {
         String creatureType = creature.getClass().getSimpleName();
 
-        creature.setOnMove(new ActionCallBack() {
-            @Override
-            public void execute(ActionType actionType, Coordinates coordinates) {
+        ActionCallBack actionCallBack = (actionType, coordinates) ->
                 consoleViewMessage.showActionMessage(actionType, creatureType, coordinates);
-            }
-        });
 
-        creature.setOnMoveImpossible(new ActionCallBack() {
-            @Override
-            public void execute(ActionType actionType, Coordinates coordinates) {
-                consoleViewMessage.showActionMessage(actionType, creatureType, coordinates);
-            }
-        });
-
-        creature.setOnAttack(new ActionCallBack() {
-            @Override
-            public void execute(ActionType actionType, Coordinates coordinates) {
-                consoleViewMessage.showActionMessage(actionType, creatureType, coordinates);
-            }
-        });
-
-        creature.setOnEat(new ActionCallBack() {
-            @Override
-            public void execute(ActionType actionType, Coordinates coordinates) {
-                consoleViewMessage.showActionMessage(actionType, creatureType, coordinates);
-            }
-        });
+        creature.setOnMove(actionCallBack);
+        creature.setOnMoveImpossible(actionCallBack);
+        creature.setOnAttack(actionCallBack);
+        creature.setOnEat(actionCallBack);
     }
 
     public void setupHealthCallBack(Creature creature) {
         String creatureType = creature.getClass().getSimpleName();
 
-        creature.setOnUpdateHealth(new HealthCallBack() {
-            @Override
-            public void executeHealth(ActionType actionType, int health, Coordinates coordinates) {
+        HealthCallBack healthCallBack = (actionType, health, coordinates) ->
                 consoleViewMessage.showHealthMessage(actionType, creatureType, coordinates, health);
-            }
-        });
+
+        creature.setOnUpdateHealth(healthCallBack);
     }
 }
 

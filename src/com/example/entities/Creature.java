@@ -84,11 +84,11 @@ public abstract class Creature extends Entity {
             }
 
             if (onMove != null) {
-                onMove.execute(ActionType.MOVE, nextStep);
+                onMove.executeAction(ActionType.MOVE, nextStep);
             }
         } else {
             if (onMoveImpossible != null) {
-                onMoveImpossible.execute(ActionType.MOVE_IMPOSSIBLE, coordinates);
+                onMoveImpossible.executeAction(ActionType.MOVE_IMPOSSIBLE, coordinates);
             }
         }
     }

@@ -23,7 +23,7 @@ public class Herbivore extends Creature {
 
         worldMap.remove(coordinates);
         if (onEat != null) {
-            onEat.execute(ActionType.EAT, coordinates);
+            onEat.executeAction(ActionType.EAT, coordinates);
         }
     }
 }

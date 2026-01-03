@@ -32,6 +32,3 @@ public class ModelCallbackManager {
         creature.setOnUpdateHealth(healthCallBack);
     }
 }
-
-//TODO надо как-то соединить ModelCallbackManager с существами... ModelCallbackManager modelCallbackManager = newModelCallbackManager();
-//TODO соеденить ModelCallbackManager с существами надо в Action'ах, там задается последовательность того, что делает существо в новом круге

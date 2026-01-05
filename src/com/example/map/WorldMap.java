@@ -10,7 +10,7 @@ import java.util.Map;
 public class WorldMap {
     private final int height;
     private final int width;
-    protected final Map<Coordinates, Entity> entities;
+    private final Map<Coordinates, Entity> entities;
 
     public WorldMap(int height, int width) {
         this.height = height;
@@ -31,6 +31,10 @@ public class WorldMap {
     public void remove(Coordinates coordinates) {
         validate(coordinates);
         entities.remove(coordinates);
+    }
+
+    public List<Entity> getAllEntities() {
+        return new ArrayList<>(entities.values());
     }
 
     public boolean isEmpty(Coordinates coordinates) {

@@ -10,15 +10,13 @@ public class ConsoleRenderer implements Renderer {
 
     @Override
     public void show(WorldMap worldMap) {
-        int width = worldMap.getWidth();
         int height = worldMap.getHeight();
+        int width = worldMap.getWidth();
 
-        //TODO: System.out.println();
         System.out.println();
-
-        for (int row = 0; row < width; row++) {
+        for (int row = 0; row < height; row++) {
             StringBuilder line = new StringBuilder();
-            for (int column = 0; column < height; column++) {
+            for (int column = 0; column < width; column++) {
                 Coordinates coordinates = new Coordinates(row, column);
                 if (worldMap.isEmpty(coordinates)) {
                     line.append(GROUND_ICON);

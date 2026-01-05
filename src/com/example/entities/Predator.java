@@ -21,7 +21,7 @@ public class Predator extends Creature {
     protected void attackTarget(WorldMap worldMap, Coordinates coordinates) {
         restoreHealth();
 
-        Creature target = (Creature) worldMap.get(coordinates);
+        Herbivore target = (Herbivore) worldMap.get(coordinates);
         int targetHealth = target.getCurrentHealth() - ATTACK_STRENGTH;
         target.setCurrentHealth(targetHealth);
 

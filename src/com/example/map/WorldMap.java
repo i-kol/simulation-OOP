@@ -2,10 +2,7 @@ package com.example.map;
 
 import com.example.entities.Entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WorldMap {
     private final int height;
@@ -21,6 +18,14 @@ public class WorldMap {
     public Entity get(Coordinates coordinates) {
         validate(coordinates);
         return entities.get(coordinates);
+    }
+
+    //TODO сделать по аналогии с Creature
+    public Optional getCoordinates(Entity entity) {
+        if (entity == null) {
+            return Optional.empty();
+        }
+        return entities.entrySet().stream().filter(e -> e.getValue() == entity);
     }
 
     public void put(Entity entity, Coordinates coordinates) {

@@ -20,14 +20,6 @@ public class WorldMap {
         return entities.get(coordinates);
     }
 
-    //TODO сделать по аналогии с Creature
-    public Optional getCoordinates(Entity entity) {
-        if (entity == null) {
-            return Optional.empty();
-        }
-        return entities.entrySet().stream().filter(e -> e.getValue() == entity);
-    }
-
     public void put(Entity entity, Coordinates coordinates) {
         validate(coordinates);
         entities.put(coordinates, entity);
@@ -40,6 +32,10 @@ public class WorldMap {
 
     public List<Entity> getAllEntities() {
         return new ArrayList<>(entities.values());
+    }
+
+    public Map<Coordinates, Entity> getCopyOfMap() {
+        return new HashMap<>(entities);
     }
 
     public boolean isEmpty(Coordinates coordinates) {

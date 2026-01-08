@@ -15,7 +15,7 @@ import com.example.view.dialog.ConsoleViewMessage;
 public class Main {
     public static void main(String[] args) {
 //        worldMap.put(new Grass(), new Coordinates(0, 0));
-        WorldMap worldMap = new WorldMap(7, 7);
+        WorldMap worldMap = new WorldMap(10, 10);
         ConsoleViewMessage consoleViewMessage = new ConsoleViewMessage();
         ModelCallbackManager modelCallbackManager = new ModelCallbackManager(consoleViewMessage);
         Renderer renderer = new ConsoleRenderer();
@@ -29,8 +29,20 @@ public class Main {
         SpawnAction spawnAction = new SpawnAction();
         MoveAction moveAction = new MoveAction();
 
+//        Predator predator = new Predator();
+//        Herbivore herbivore = new Herbivore();
+//        worldMap.put(predator, new Coordinates(5,5));
+//        worldMap.put(herbivore, new Coordinates(0,0));
+
         spawnAction.execute(worldMap);
         renderer.show(worldMap);
+
+        moveAction.execute(worldMap);
+        renderer.show(worldMap);
+
+        moveAction.execute(worldMap);
+        renderer.show(worldMap);
+
         moveAction.execute(worldMap);
         renderer.show(worldMap);
 

@@ -19,13 +19,10 @@ public class EntitiesFactory {
         int entityNumber = calculateEntitiesQuantity(worldMap, entity.getClass());
 
         for (int i = 0; i < entityNumber; i++) {
-            int randomHeight = random.nextInt(worldMap.getHeight());
-            int randomWidth = random.nextInt(worldMap.getWidth());
-
-            Coordinates coordinates = new Coordinates(randomHeight, randomWidth);
+            Coordinates coordinates = new Coordinates(random.nextInt(worldMap.getHeight()), random.nextInt(worldMap.getWidth()));
 
             while (!worldMap.isEmpty(coordinates)) {
-                coordinates = new Coordinates(randomHeight, randomWidth);
+                coordinates = new Coordinates(random.nextInt(worldMap.getHeight()), random.nextInt(worldMap.getWidth()));
             }
             worldMap.put(entity, coordinates);
         }

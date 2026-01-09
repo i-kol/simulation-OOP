@@ -1,4 +1,4 @@
-package com.example.view;
+package com.example.view.renderer;
 
 import com.example.map.WorldMap;
 

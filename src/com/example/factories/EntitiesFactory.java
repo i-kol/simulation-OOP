@@ -33,12 +33,14 @@ public class EntitiesFactory {
     }
 
     private double getEntityRatio(Class<? extends Entity> entity) {
-        return switch (entity.getSimpleName()) {
+        String entityType = entity.getSimpleName();
+
+        return switch (entityType) {
             case "Herbivore" -> 0.03;    // 0.03 by default
             case "Tree", "Rock" -> 0.04; // 0.04 by default
             case "Predator" -> 0.02;    // 0.02 by default
             case "Grass" -> 0.06;    // 0,06 by default
-            default -> throw new IllegalArgumentException("Unknown type of entity: " + entity.getSimpleName());
+            default -> throw new IllegalArgumentException("Unknown type of entity: " + entityType);
         };
     }
 }

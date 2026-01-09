@@ -2,12 +2,11 @@ package com.example;
 
 import com.example.actions.Action;
 import com.example.actions.MoveAction;
-import com.example.actions.RespawnAction;
 import com.example.actions.SpawnAction;
 import com.example.callback.ModelCallbackManager;
 import com.example.map.WorldMap;
-import com.example.view.ConsoleRenderer;
-import com.example.view.Renderer;
+import com.example.view.renderer.ConsoleRenderer;
+import com.example.view.renderer.Renderer;
 import com.example.view.dialog.ConsoleViewMessage;
 
 import java.util.List;

@@ -11,7 +11,6 @@ import com.example.view.dialog.ConsoleViewMessage;
 
 public class Main {
     public static void main(String[] args) {
-//        worldMap.put(new Grass(), new Coordinates(0, 0));
         WorldMap worldMap = new WorldMap(10, 10);
         ConsoleViewMessage consoleViewMessage = new ConsoleViewMessage();
         ModelCallbackManager modelCallbackManager = new ModelCallbackManager(consoleViewMessage);

@@ -1,8 +1,10 @@
 package com.example.factories;
 
+import com.example.callback.ModelCallbackManager;
 import com.example.entities.*;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
+import com.example.view.dialog.ConsoleViewMessage;
 
 import java.util.List;
 import java.util.Random;
@@ -25,6 +27,20 @@ public class EntitiesFactory {
                 coordinates = new Coordinates(random.nextInt(worldMap.getHeight()), random.nextInt(worldMap.getWidth()));
             }
             worldMap.put(entity, coordinates);
+            addCallBack(entity);
+        }
+    }
+
+    private void addCallBack(Entity entity) {
+        ConsoleViewMessage consoleViewMessage = new ConsoleViewMessage();
+        ModelCallbackManager modelCallbackManager = new ModelCallbackManager(consoleViewMessage);
+
+        if (entity instanceof Predator) {
+            modelCallbackManager.setupActionCallBack((Creature) entity);
+        }
+        if (entity instanceof Herbivore) {
+            modelCallbackManager.setupActionCallBack((Creature) entity);
+            modelCallbackManager.setupHealthCallBack((Creature) entity);
         }
     }
 

@@ -7,7 +7,6 @@ import com.example.map.WorldMap;
 import static com.example.view.renderer.ConsoleIcons.*;
 
 public class ConsoleRenderer implements Renderer {
-
     @Override
     public void show(WorldMap worldMap) {
         int height = worldMap.getHeight();

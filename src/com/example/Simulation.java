@@ -4,7 +4,10 @@ import com.example.actions.Action;
 import com.example.actions.MoveAction;
 import com.example.actions.SpawnAction;
 import com.example.callback.ModelCallbackManager;
+import com.example.factories.WorldMapFactory;
 import com.example.map.WorldMap;
+import com.example.view.dialog.Dialog;
+import com.example.view.dialog.IntegerMinMaxDialog;
 import com.example.view.renderer.ConsoleRenderer;
 import com.example.view.renderer.Renderer;
 import com.example.view.dialog.ConsoleViewMessage;
@@ -17,7 +20,20 @@ public class Simulation {
     //    pauseSimulation() - приостановить бесконечный цикл симуляции и рендеринга
 
     public void start() {
-        WorldMap worldMap = new WorldMap(10, 10);
+        WorldMapFactory worldMapFactory = new WorldMapFactory();
+
+        Dialog<Integer> integerDialog = new IntegerMinMaxDialog(
+                "Enter a number between 5 and 50",
+                "Invalid number entered!",
+                5,
+                50);
+
+        System.out.println("\nEnter world map size.\nNumber of rows: ");
+        int row = integerDialog.input();
+        System.out.println("Enter number of columns: ");
+        int column = integerDialog.input();
+
+        WorldMap worldMap = worldMapFactory.createWorldMap(row, column);
         ConsoleViewMessage consoleViewMessage = new ConsoleViewMessage();
         ModelCallbackManager modelCallbackManager = new ModelCallbackManager(consoleViewMessage);
         Renderer renderer = new ConsoleRenderer();

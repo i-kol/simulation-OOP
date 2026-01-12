@@ -2,7 +2,6 @@ package com.example.actions;
 
 import com.example.entities.Creature;
 import com.example.entities.Entity;
-import com.example.entities.Predator;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
 

@@ -4,7 +4,8 @@ import com.example.callback.ActionType;
 import com.example.callback.ActionCallBack;
 import com.example.callback.HealthCallBack;
 import com.example.map.Coordinates;
-import com.example.map.Pathfinder;
+import com.example.map.pathFinder.BFS;
+import com.example.map.pathFinder.PathFinder;
 import com.example.map.WorldMap;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public abstract class Creature extends Entity {
     private int actionPoint;
     private final int maximumHealthRecovery;
     Class<? extends Entity> target;
-    private final Pathfinder pathfinder;
+    private final PathFinder pathfinder;
     ActionCallBack onAttack;
     ActionCallBack onEat;
     ActionCallBack onMove;
@@ -31,7 +32,7 @@ public abstract class Creature extends Entity {
         this.actionPoint = actionPoint;
         this.maximumHealthRecovery = maximumHealthRecovery;
         this.target = target;
-        this.pathfinder = new Pathfinder();
+        this.pathfinder = new BFS();
     }
 
     public void makeMove(WorldMap worldMap, Coordinates coordinates) {

@@ -19,9 +19,11 @@ public class Simulation {
     //    startSimulation() - запустить бесконечный цикл симуляции и рендеринга
     //    pauseSimulation() - приостановить бесконечный цикл симуляции и рендеринга
 
+    private boolean isRunning = true;
+    private boolean isPaused = false;
+
     public void start() {
         WorldMapFactory worldMapFactory = new WorldMapFactory();
-
         Dialog<Integer> integerDialog = new IntegerMinMaxDialog(
                 "Enter a number between 5 and 50",
                 "Invalid number entered!",
@@ -34,22 +36,17 @@ public class Simulation {
         int column = integerDialog.input();
 
         WorldMap worldMap = worldMapFactory.createWorldMap(row, column);
-        ConsoleViewMessage consoleViewMessage = new ConsoleViewMessage();
-        ModelCallbackManager modelCallbackManager = new ModelCallbackManager(consoleViewMessage);
         Renderer renderer = new ConsoleRenderer();
-
-//        modelCallbackManager.setupHealthCallBack(herbivore);
-//        modelCallbackManager.setupHealthCallBack(herbivore2);
-//        modelCallbackManager.setupActionCallBack(predator);
-
         SpawnAction spawnAction = new SpawnAction();
         spawnAction.execute(worldMap);
+        renderer.show(worldMap);
 
         do {
             List<Action> actions = List.of(new MoveAction(), new SpawnAction());
             for (Action a : actions) {
                 a.execute(worldMap);
             }
+            renderer.show(worldMap);
         } while (true);
     }
 }

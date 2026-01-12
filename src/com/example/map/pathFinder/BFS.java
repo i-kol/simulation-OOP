@@ -1,11 +1,14 @@
-package com.example.map;
+package com.example.map.pathFinder;
 
 import com.example.entities.Entity;
+import com.example.map.Coordinates;
+import com.example.map.WorldMap;
 
 import java.util.*;
 
-public class Pathfinder {
+public class BFS implements PathFinder {
 
+    @Override
     public List<Coordinates> findPath(WorldMap worldMap, Coordinates startCell, Class<? extends Entity> target) {
 
         Map<Coordinates, Coordinates> parentMap = new HashMap<>();

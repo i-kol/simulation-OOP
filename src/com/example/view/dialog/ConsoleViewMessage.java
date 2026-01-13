@@ -14,7 +14,7 @@ public class ConsoleViewMessage {
                 System.out.printf("%s couldn't move from cell: [%d, %d]%n", creatureType, coordinates.row(), coordinates.column());
                 break;
             case ATTACK:
-                System.out.printf("%s attacked the Herbivore at cell: [%d, %d]%n", creatureType, coordinates.row(), coordinates.column());
+                System.out.printf("%s attacked the Herbivore!!!!! at cell: [%d, %d]%n", creatureType, coordinates.row(), coordinates.column());
                 break;
             case EAT:
                 System.out.printf("%s ate the Herbivore at cell: [%d, %d]%n", creatureType, coordinates.row(), coordinates.column());

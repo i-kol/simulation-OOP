@@ -2,15 +2,14 @@ package com.example;
 
 import com.example.actions.Action;
 import com.example.actions.MoveAction;
+import com.example.actions.RespawnAction;
 import com.example.actions.SpawnAction;
-import com.example.callback.ModelCallbackManager;
 import com.example.factories.WorldMapFactory;
 import com.example.map.WorldMap;
 import com.example.view.dialog.Dialog;
 import com.example.view.dialog.IntegerMinMaxDialog;
 import com.example.view.renderer.ConsoleRenderer;
 import com.example.view.renderer.Renderer;
-import com.example.view.dialog.ConsoleViewMessage;
 
 import java.util.List;
 
@@ -37,12 +36,12 @@ public class Simulation {
 
         WorldMap worldMap = worldMapFactory.createWorldMap(row, column);
         Renderer renderer = new ConsoleRenderer();
-        SpawnAction spawnAction = new SpawnAction();
+        Action spawnAction = new SpawnAction();
         spawnAction.execute(worldMap);
         renderer.show(worldMap);
 
         do {
-            List<Action> actions = List.of(new MoveAction(), new SpawnAction());
+            List<Action> actions = List.of(new MoveAction(), new RespawnAction());
             for (Action a : actions) {
                 a.execute(worldMap);
             }

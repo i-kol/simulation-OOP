@@ -74,7 +74,7 @@ public class WorldMap {
         return listOfNeighboringCells;
     }
 
-    protected List<Coordinates> getAdjacentCells(Coordinates coordinates) {
+    public List<Coordinates> getAdjacentCells(Coordinates coordinates) {
         ArrayList<Coordinates> listOfAdjacentCells = new ArrayList<>();
         List<Coordinates> listOfNeighboringCells = getNeighborCells(coordinates);
 

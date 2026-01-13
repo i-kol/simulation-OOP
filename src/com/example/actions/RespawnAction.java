@@ -25,7 +25,7 @@ public class RespawnAction implements Action {
         int entitiesQuantity = 0;
 
         for (Entity e : allEntities) {
-            if (e.equals(entity)) {
+            if (e != null && entity != null && e.getClass() == entity.getClass()) {
                 entitiesQuantity++;
             }
         }

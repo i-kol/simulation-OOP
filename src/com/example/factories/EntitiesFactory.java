@@ -36,10 +36,12 @@ public class EntitiesFactory {
         ModelCallbackManager modelCallbackManager = new ModelCallbackManager(consoleViewMessage);
 
         if (entity instanceof Predator) {
-            modelCallbackManager.setupActionCallBack((Creature) entity);
+            modelCallbackManager.setupMoveCallBack((Creature) entity);
+            modelCallbackManager.setupAttackCallBack((Creature) entity);
         }
         if (entity instanceof Herbivore) {
-            modelCallbackManager.setupActionCallBack((Creature) entity);
+            modelCallbackManager.setupMoveCallBack((Creature) entity);
+            modelCallbackManager.setupAttackCallBack((Creature) entity);
             modelCallbackManager.setupHealthCallBack((Creature) entity);
         }
     }

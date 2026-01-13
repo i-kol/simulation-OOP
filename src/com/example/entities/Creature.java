@@ -1,8 +1,9 @@
 package com.example.entities;
 
 import com.example.callback.ActionType;
-import com.example.callback.ActionCallBack;
+import com.example.callback.AttackCallBack;
 import com.example.callback.HealthCallBack;
+import com.example.callback.MoveCallBack;
 import com.example.map.Coordinates;
 import com.example.map.pathFinder.BFS;
 import com.example.map.pathFinder.PathFinder;
@@ -19,10 +20,10 @@ public abstract class Creature extends Entity {
     private final int maximumHealthRecovery;
     Class<? extends Entity> target;
     private final PathFinder pathfinder;
-    ActionCallBack onAttack;
-    ActionCallBack onEat;
-    ActionCallBack onMove;
-    ActionCallBack onMoveImpossible;
+    AttackCallBack onAttack;
+    AttackCallBack onEat;
+    MoveCallBack onMove;
+    MoveCallBack onMoveImpossible;
     HealthCallBack onUpdateHealth;
 
     public Creature(int speed, int currentHealth, int maxHealth, int actionPoint, int maximumHealthRecovery, Class<? extends Entity> target) {
@@ -85,18 +86,18 @@ public abstract class Creature extends Entity {
             }
 
             if (onMove != null) {
-                onMove.executeAction(ActionType.MOVE, nextStep);
+                onMove.executeMove(ActionType.MOVE, nextStep);
             }
         } else {
             if (onMoveImpossible != null) {
-                onMoveImpossible.executeAction(ActionType.MOVE_IMPOSSIBLE, coordinates);
+                onMoveImpossible.executeMove(ActionType.MOVE_IMPOSSIBLE, coordinates);
             }
         }
     }
 
-    public void triggerHealthUpdate(int health, Coordinates coordinates) {
+    public void updateHealth(int health, Coordinates coordinates) {
         if (onUpdateHealth != null) {
-            onUpdateHealth.executeHealth(ActionType.HEALTH_UPDATE, health, coordinates);
+            onUpdateHealth.executeHealth(ActionType.HEALTH_UPDATE, coordinates, health);
         }
     }
 
@@ -108,19 +109,19 @@ public abstract class Creature extends Entity {
         this.currentHealth = currentHealth;
     }
 
-    public void setOnAttack(ActionCallBack onAttack) {
+    public void setOnAttack(AttackCallBack onAttack) {
         this.onAttack = onAttack;
     }
 
-    public void setOnEat(ActionCallBack onEat) {
+    public void setOnEat(AttackCallBack onEat) {
         this.onEat = onEat;
     }
 
-    public void setOnMove(ActionCallBack onMove) {
+    public void setOnMove(MoveCallBack onMove) {
         this.onMove = onMove;
     }
 
-    public void setOnMoveImpossible(ActionCallBack onMoveImpossible) {
+    public void setOnMoveImpossible(MoveCallBack onMoveImpossible) {
         this.onMoveImpossible = onMoveImpossible;
     }
 

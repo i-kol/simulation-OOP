@@ -27,12 +27,12 @@ public class Predator extends Creature {
 
         if (targetHealth > 0) {
             if (onAttack != null) {
-                onAttack.executeAction(ActionType.ATTACK, coordinates);
+                onAttack.executeAttack(ActionType.ATTACK, coordinates, target);
             }
-            target.triggerHealthUpdate(targetHealth, coordinates);
+            target.updateHealth(targetHealth, coordinates);
         } else {
             if (onEat != null) {
-                onEat.executeAction(ActionType.EAT, coordinates);
+                onEat.executeAttack(ActionType.EAT, coordinates, target);
             }
             worldMap.remove(coordinates);
         }

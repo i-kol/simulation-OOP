@@ -10,23 +10,34 @@ public class ModelCallbackManager {
         this.consoleViewMessage = viewMessage;
     }
 
-    public void setupActionCallBack(Creature creature) {
+    public void setupAttackCallBack(Creature creature) {
         String creatureType = creature.getClass().getSimpleName();
 
-        ActionCallBack actionCallBack = (actionType, coordinates) ->
-                consoleViewMessage.showActionMessage(actionType, creatureType, coordinates);
+        AttackCallBack attackCallBack = (actionType, coordinates, target) ->
+        {
+            String targetType = target.getClass().getSimpleName();
+            consoleViewMessage.showAttackMessage(actionType, creatureType, targetType, coordinates);
+        };
 
-        creature.setOnMove(actionCallBack);
-        creature.setOnMoveImpossible(actionCallBack);
-        creature.setOnAttack(actionCallBack);
-        creature.setOnEat(actionCallBack);
+        creature.setOnAttack(attackCallBack);
+        creature.setOnEat(attackCallBack);
+    }
+
+    public void setupMoveCallBack(Creature creature) {
+        String creatureType = creature.getClass().getSimpleName();
+
+        MoveCallBack moveCallBack = (actionType, coordinates) ->
+                consoleViewMessage.showMoveMessage(actionType, creatureType, coordinates);
+
+        creature.setOnMove(moveCallBack);
+        creature.setOnMoveImpossible(moveCallBack);
     }
 
     public void setupHealthCallBack(Creature creature) {
         String creatureType = creature.getClass().getSimpleName();
 
-        HealthCallBack healthCallBack = (actionType, health, coordinates) ->
-                consoleViewMessage.showHealthMessage(actionType, creatureType, coordinates, health);
+        HealthCallBack healthCallBack = (actionType, coordinates, health) ->
+                consoleViewMessage.showHealthMessage(creatureType, coordinates, health);
 
         creature.setOnUpdateHealth(healthCallBack);
     }

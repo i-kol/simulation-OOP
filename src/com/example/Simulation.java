@@ -14,14 +14,11 @@ import com.example.view.renderer.Renderer;
 import java.util.List;
 
 public class Simulation {
-    //    nextTurn() - просимулировать и отрендерить один ход
-    //    startSimulation() - запустить бесконечный цикл симуляции и рендеринга
-    //    pauseSimulation() - приостановить бесконечный цикл симуляции и рендеринга
-
     private boolean isRunning = true;
     private boolean isPaused = false;
+    Renderer renderer = new ConsoleRenderer();
 
-    public void start() {
+    public void startSimulation() {
         WorldMapFactory worldMapFactory = new WorldMapFactory();
         Dialog<Integer> integerDialog = new IntegerMinMaxDialog(
                 "Enter a number between 5 and 50",
@@ -35,17 +32,39 @@ public class Simulation {
         int column = integerDialog.input();
 
         WorldMap worldMap = worldMapFactory.createWorldMap(row, column);
-        Renderer renderer = new ConsoleRenderer();
         Action spawnAction = new SpawnAction();
         spawnAction.execute(worldMap);
         renderer.show(worldMap);
 
         do {
-            List<Action> actions = List.of(new MoveAction(), new RespawnAction());
-            for (Action a : actions) {
-                a.execute(worldMap);
+            if (!isPaused) {
+                doTurn(worldMap, renderer);
             }
-            renderer.show(worldMap);
-        } while (true);
+        } while (isRunning);
+    }
+
+//    public void nextTurn(WorldMap worldMap) {
+//        pauseSimulation();
+//        doTurn(worldMap, renderer);
+//    }
+
+    private void doTurn(WorldMap worldMap, Renderer renderer) {
+        List<Action> actions = List.of(new MoveAction(), new RespawnAction());
+        for (Action a : actions) {
+            a.execute(worldMap);
+        }
+        renderer.show(worldMap);
+    }
+
+    public void pauseSimulation() {
+        isPaused = true;
+    }
+
+    public void continueSimulation() {
+        isPaused = false;
+    }
+
+    public void stopSimulation() {
+        isRunning = false;
     }
 }

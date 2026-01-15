@@ -16,7 +16,16 @@ import java.util.List;
 public class Simulation {
     private boolean isRunning = true;
     private boolean isPaused = false;
-    Renderer renderer = new ConsoleRenderer();
+    private final Renderer renderer = new ConsoleRenderer();
+    private WorldMap currentWorldMap;
+
+    public void setCurrentWorldMap(WorldMap worldMap) {
+        this.currentWorldMap = worldMap;
+    }
+
+    public WorldMap getCurrentWorldMap() {
+        return currentWorldMap;
+    }
 
     public void startSimulation() {
         WorldMapFactory worldMapFactory = new WorldMapFactory();
@@ -32,23 +41,28 @@ public class Simulation {
         int column = integerDialog.input();
 
         WorldMap worldMap = worldMapFactory.createWorldMap(row, column);
+        setCurrentWorldMap(worldMap);
+
         Action spawnAction = new SpawnAction();
         spawnAction.execute(worldMap);
         renderer.show(worldMap);
 
         do {
             if (!isPaused) {
-                doTurn(worldMap, renderer);
+                doTurn(worldMap);
             }
         } while (isRunning);
     }
 
-//    public void nextTurn(WorldMap worldMap) {
-//        pauseSimulation();
-//        doTurn(worldMap, renderer);
-//    }
+    public void nextTurn() {
+        if (currentWorldMap == null) {
+            return;
+        }
+        pauseSimulation();
+        doTurn(currentWorldMap);
+    }
 
-    private void doTurn(WorldMap worldMap, Renderer renderer) {
+    private void doTurn(WorldMap worldMap) {
         List<Action> actions = List.of(new MoveAction(), new RespawnAction());
         for (Action a : actions) {
             a.execute(worldMap);

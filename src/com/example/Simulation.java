@@ -6,17 +6,18 @@ import com.example.actions.RespawnAction;
 import com.example.actions.SpawnAction;
 import com.example.factories.WorldMapFactory;
 import com.example.map.WorldMap;
-import com.example.view.dialog.Dialog;
-import com.example.view.dialog.IntegerMinMaxDialog;
-import com.example.view.renderer.ConsoleRenderer;
-import com.example.view.renderer.Renderer;
+import com.example.dialog.Dialog;
+import com.example.dialog.IntegerMinMaxDialog;
+import com.example.renderer.ConsoleRenderer;
+import com.example.renderer.Renderer;
 
 import java.util.List;
 
 public class Simulation {
-    private boolean isRunning = true;
-    private boolean isPaused = false;
+    private volatile boolean isRunning = true;
+    private volatile boolean isPaused = false;
     private final Renderer renderer = new ConsoleRenderer();
+    Menu menu = new Menu();
     private WorldMap currentWorldMap;
 
     public void setCurrentWorldMap(WorldMap worldMap) {
@@ -27,7 +28,7 @@ public class Simulation {
         return currentWorldMap;
     }
 
-    public void startSimulation() {
+    public void startSimulation() throws InterruptedException {
         WorldMapFactory worldMapFactory = new WorldMapFactory();
         Dialog<Integer> integerDialog = new IntegerMinMaxDialog(
                 "Enter a number between 5 and 50",
@@ -50,6 +51,7 @@ public class Simulation {
         do {
             if (!isPaused) {
                 doTurn(worldMap);
+                Thread.sleep(1000);
             }
         } while (isRunning);
     }
@@ -68,6 +70,7 @@ public class Simulation {
             a.execute(worldMap);
         }
         renderer.show(worldMap);
+        menu.showMenu(); //TODO тут не работает
     }
 
     public void pauseSimulation() {

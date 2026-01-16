@@ -1,4 +1,4 @@
-package com.example.view.dialog;
+package com.example.dialog;
 
 import java.util.Scanner;
 

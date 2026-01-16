@@ -1,16 +1,15 @@
-package com.example.view.renderer;
+package com.example.renderer;
 
 import com.example.Menu;
 import com.example.entities.Entity;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
 
-import static com.example.view.renderer.ConsoleIcons.*;
+import static com.example.renderer.ConsoleIcons.*;
 
 public class ConsoleRenderer implements Renderer {
     @Override
     public void show(WorldMap worldMap) {
-        Menu menu = new Menu();
         int height = worldMap.getHeight();
         int width = worldMap.getWidth();
 
@@ -28,7 +27,6 @@ public class ConsoleRenderer implements Renderer {
             }
             System.out.println(line);
         }
-        menu.showMenu();
     }
 
     private String getEntityIcon(Entity entity, Coordinates coordinates) {

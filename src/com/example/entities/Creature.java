@@ -5,8 +5,8 @@ import com.example.callback.AttackCallBack;
 import com.example.callback.HealthCallBack;
 import com.example.callback.MoveCallBack;
 import com.example.map.Coordinates;
-import com.example.map.pathFinder.BFS;
-import com.example.map.pathFinder.PathFinder;
+import com.example.pathFinder.BFS;
+import com.example.pathFinder.PathFinder;
 import com.example.map.WorldMap;
 
 import java.util.List;

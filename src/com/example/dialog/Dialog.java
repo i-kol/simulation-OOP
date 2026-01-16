@@ -1,4 +1,4 @@
-package com.example.view.dialog;
+package com.example.dialog;
 
 public interface Dialog<T> {
     T input();

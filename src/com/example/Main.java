@@ -7,7 +7,15 @@ public class Main {
         Simulation simulation = new Simulation();
         Menu menu = new Menu();
 
-        Thread simulationThread = new Thread(simulation::startSimulation);
+        Thread simulationThread = new Thread(() ->
+        {
+            try {
+                simulation.startSimulation();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         simulationThread.start();
 
         while (simulation.getCurrentWorldMap() == null) {
@@ -28,6 +36,4 @@ public class Main {
         menuThread.start();
     }
 }
-//TODO замедлить скорость рендеринга ходов
 //TODO переместить показ меню управления симуляцией под информацию коллбеков
-//TODO выяснить, почему не работает запуск симуляции после паузы и выход из симуляции

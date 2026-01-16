@@ -1,4 +1,4 @@
-package com.example.map.pathFinder;
+package com.example.pathFinder;
 
 import com.example.entities.Entity;
 import com.example.map.Coordinates;

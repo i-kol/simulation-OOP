@@ -1,7 +1,7 @@
 package com.example.callback;
 
 import com.example.entities.Creature;
-import com.example.view.dialog.ConsoleViewMessage;
+import com.example.dialog.ConsoleViewMessage;
 
 public class ModelCallbackManager {
     private final ConsoleViewMessage consoleViewMessage;

@@ -10,7 +10,7 @@ public class Menu {
     private final static String ONE_TURN = "3";
     private final static String STOP = "4";
 
-    public void showMenu() {
+    protected void showMenu() {
         System.out.println("Press:");
         System.out.printf("%s and \"Enter\" - to pause the simulation %n", PAUSE);
         System.out.printf("%s and \"Enter\" - to continue the simulation %n", CONTINUE);

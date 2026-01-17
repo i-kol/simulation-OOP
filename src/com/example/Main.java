@@ -3,7 +3,7 @@ package com.example;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Simulation simulation = new Simulation();
         Menu menu = new Menu();
 
@@ -15,7 +15,6 @@ public class Main {
                 throw new RuntimeException(e);
             }
         });
-
         simulationThread.start();
 
         while (simulation.getCurrentWorldMap() == null) {
@@ -36,4 +35,4 @@ public class Main {
         menuThread.start();
     }
 }
-//TODO переместить показ меню управления симуляцией под информацию коллбеков
+//TODO сделать счетчик ходов

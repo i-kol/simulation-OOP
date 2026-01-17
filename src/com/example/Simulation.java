@@ -4,7 +4,6 @@ import com.example.actions.Action;
 import com.example.actions.MoveAction;
 import com.example.actions.RespawnAction;
 import com.example.actions.SpawnAction;
-import com.example.factories.WorldMapFactory;
 import com.example.map.WorldMap;
 import com.example.dialog.Dialog;
 import com.example.dialog.IntegerMinMaxDialog;
@@ -17,19 +16,18 @@ public class Simulation {
     private volatile boolean isRunning = true;
     private volatile boolean isPaused = false;
     private final Renderer renderer = new ConsoleRenderer();
-    Menu menu = new Menu();
+    private final Menu menu = new Menu();
     private WorldMap currentWorldMap;
 
-    public void setCurrentWorldMap(WorldMap worldMap) {
+    protected void setCurrentWorldMap(WorldMap worldMap) {
         this.currentWorldMap = worldMap;
     }
 
-    public WorldMap getCurrentWorldMap() {
+    protected WorldMap getCurrentWorldMap() {
         return currentWorldMap;
     }
 
-    public void startSimulation() throws InterruptedException {
-        WorldMapFactory worldMapFactory = new WorldMapFactory();
+    protected void startSimulation() throws InterruptedException {
         Dialog<Integer> integerDialog = new IntegerMinMaxDialog(
                 "Enter a number between 5 and 50",
                 "Invalid number entered!",
@@ -41,7 +39,7 @@ public class Simulation {
         System.out.println("Enter number of columns: ");
         int column = integerDialog.input();
 
-        WorldMap worldMap = worldMapFactory.createWorldMap(row, column);
+        WorldMap worldMap = new WorldMap(row, column);
         setCurrentWorldMap(worldMap);
 
         Action spawnAction = new SpawnAction();
@@ -70,18 +68,18 @@ public class Simulation {
             a.execute(worldMap);
         }
         renderer.show(worldMap);
-        menu.showMenu(); //TODO тут не работает
+        menu.showMenu();
     }
 
-    public void pauseSimulation() {
+    protected void pauseSimulation() {
         isPaused = true;
     }
 
-    public void continueSimulation() {
+    protected void continueSimulation() {
         isPaused = false;
     }
 
-    public void stopSimulation() {
+    protected void stopSimulation() {
         isRunning = false;
     }
 }

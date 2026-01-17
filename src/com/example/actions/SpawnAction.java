@@ -1,7 +1,7 @@
 package com.example.actions;
 
 import com.example.entities.*;
-import com.example.factories.EntitiesFactory;
+import com.example.factory.EntitiesFactory;
 import com.example.map.WorldMap;
 
 import java.util.List;

@@ -95,7 +95,7 @@ public abstract class Creature extends Entity {
         }
     }
 
-    public void updateHealth(int health, Coordinates coordinates) {
+    protected void updateHealth(int health, Coordinates coordinates) {
         if (onUpdateHealth != null) {
             onUpdateHealth.executeHealth(ActionType.HEALTH_UPDATE, coordinates, health);
         }

@@ -18,6 +18,7 @@ public class Simulation {
     private final Renderer renderer = new ConsoleRenderer();
     private final Menu menu = new Menu();
     private WorldMap currentWorldMap;
+    private static int moveCounter = 1;
 
     protected void setCurrentWorldMap(WorldMap worldMap) {
         this.currentWorldMap = worldMap;
@@ -25,6 +26,10 @@ public class Simulation {
 
     protected WorldMap getCurrentWorldMap() {
         return currentWorldMap;
+    }
+
+    public static int getMoveCounter() {
+        return moveCounter;
     }
 
     protected void startSimulation() throws InterruptedException {
@@ -63,12 +68,14 @@ public class Simulation {
     }
 
     private void doTurn(WorldMap worldMap) {
+        System.out.printf("%nMove #%d%n",getMoveCounter());
         List<Action> actions = List.of(new MoveAction(), new RespawnAction());
         for (Action a : actions) {
             a.execute(worldMap);
         }
         renderer.show(worldMap);
         menu.showMenu();
+        moveCounter++;
     }
 
     protected void pauseSimulation() {

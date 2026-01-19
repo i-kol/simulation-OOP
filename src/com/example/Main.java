@@ -35,4 +35,3 @@ public class Main {
         menuThread.start();
     }
 }
-//TODO сделать счетчик ходов

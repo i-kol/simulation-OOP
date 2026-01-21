@@ -1,11 +1,10 @@
-package com.example.renderer;
+package com.example.view.renderer;
 
-import com.example.Menu;
 import com.example.entities.Entity;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
 
-import static com.example.renderer.ConsoleIcons.*;
+import static com.example.view.renderer.ConsoleIcons.*;
 
 public class ConsoleRenderer implements Renderer {
     @Override

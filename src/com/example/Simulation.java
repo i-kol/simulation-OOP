@@ -5,10 +5,10 @@ import com.example.actions.MoveAction;
 import com.example.actions.RespawnAction;
 import com.example.actions.SpawnAction;
 import com.example.map.WorldMap;
-import com.example.dialog.Dialog;
-import com.example.dialog.IntegerMinMaxDialog;
-import com.example.renderer.ConsoleRenderer;
-import com.example.renderer.Renderer;
+import com.example.view.dialog.Dialog;
+import com.example.view.dialog.IntegerMinMaxDialog;
+import com.example.view.renderer.ConsoleRenderer;
+import com.example.view.renderer.Renderer;
 
 import java.util.List;
 

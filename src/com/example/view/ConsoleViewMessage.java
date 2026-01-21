@@ -1,4 +1,4 @@
-package com.example.dialog;
+package com.example.view;
 
 import com.example.callback.ActionType;
 import com.example.map.Coordinates;

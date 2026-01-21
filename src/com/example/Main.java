@@ -27,7 +27,7 @@ public class Main {
 
         Thread menuThread = new Thread(() -> {
             try {
-                menu.controlSimulation(simulation);
+                menu.execute(simulation);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

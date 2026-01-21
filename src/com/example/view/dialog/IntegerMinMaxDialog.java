@@ -1,4 +1,4 @@
-package com.example.dialog;
+package com.example.view.dialog;
 
 public class IntegerMinMaxDialog extends AbstractDialog<Integer> {
     private final int min;

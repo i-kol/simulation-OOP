@@ -1,10 +1,10 @@
 package com.example.factory;
 
-import com.example.callback.ModelCallbackManager;
+import com.example.view.ModelCallbackManager;
 import com.example.entities.*;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
-import com.example.dialog.ConsoleViewMessage;
+import com.example.view.ConsoleViewMessage;
 
 import java.util.List;
 import java.util.Random;

@@ -1,9 +1,7 @@
-package com.example.view;
+package com.example.callback;
 
-import com.example.callback.AttackCallBack;
-import com.example.callback.HealthCallBack;
-import com.example.callback.MoveCallBack;
 import com.example.entities.Creature;
+import com.example.view.ConsoleViewMessage;
 
 public class ModelCallbackManager {
     private final ConsoleViewMessage consoleViewMessage;

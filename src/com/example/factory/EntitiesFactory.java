@@ -1,6 +1,6 @@
 package com.example.factory;
 
-import com.example.view.ModelCallbackManager;
+import com.example.callback.ModelCallbackManager;
 import com.example.entities.*;
 import com.example.map.Coordinates;
 import com.example.map.WorldMap;
